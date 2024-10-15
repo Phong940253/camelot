@@ -8,7 +8,6 @@ from pypdf import PdfWriter
 from pypdf._utils import StrByteType
 
 from .core import TableList
-from .parsers import Lattice
 from .parsers import Stream
 from .utils import TemporaryDirectory
 from .utils import download_url
@@ -150,9 +149,8 @@ class PDFHandler:
 
         Parameters
         ----------
-        flavor : str (default: 'lattice')
-            The parsing method to use ('lattice' or 'stream').
-            Lattice is used by default.
+        flavor : str (default: 'stream')
+            Stream is used by default.
         suppress_stdout : str (default: False)
             Suppress logs and warnings.
         layout_kwargs : dict, optional (default: {})
@@ -175,7 +173,7 @@ class PDFHandler:
             for p in self.pages:
                 self._save_page(self.filepath, p, tempdir)
             pages = [os.path.join(tempdir, f"page-{p}.pdf") for p in self.pages]
-            parser = Lattice(**kwargs) if flavor == "lattice" else Stream(**kwargs)
+            parser = Stream(**kwargs)
             for p in pages:
                 t = parser.extract_tables(
                     p, suppress_stdout=suppress_stdout, layout_kwargs=layout_kwargs
