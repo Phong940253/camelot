@@ -9,3 +9,7 @@
 /src/*.egg-info/
 __pycache__/
 .idea/
+
+# pixi environments
+.pixi
+*.egg-info
