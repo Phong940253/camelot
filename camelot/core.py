@@ -13,7 +13,7 @@ from typing import Any
 from typing import Iterable
 from typing import Iterator
 
-import cv2
+# import cv2
 import pandas as pd
 
 
@@ -610,17 +610,17 @@ class Table:
         }
         return report
 
-    def get_pdf_image(self):
-        """Compute pdf image and cache it."""
-        if self._image is None:
-            if self._image_path is None:
-                self._image_path = build_file_path_in_temp_dir(
-                    os.path.basename(self.filename), ".png"
-                )
-                backend = ImageConversionBackend(use_fallback=True)
-                backend.convert(self.filename, self._image_path)
-            self._image = cv2.imread(self._image_path)
-        return self._image
+    # def get_pdf_image(self):
+    #     """Compute pdf image and cache it."""
+    #     if self._image is None:
+    #         if self._image_path is None:
+    #             self._image_path = build_file_path_in_temp_dir(
+    #                 os.path.basename(self.filename), ".png"
+    #             )
+    #             backend = ImageConversionBackend(use_fallback=True)
+    #             backend.convert(self.filename, self._image_path)
+    #         self._image = cv2.imread(self._image_path)
+    #     return self._image
 
     def set_all_edges(self):
         """Set all table edges to True."""
